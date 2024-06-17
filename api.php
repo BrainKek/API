@@ -19,7 +19,7 @@
  * @apiName GetProducts
  * @apiGroup Products
  * @apiParam {Number} id  Products ID
- * @apiSuccess {String} products Products Name.
+ * @apiSuccess {String} product Product Name.
  * @apiSuccess {String} quantity Product Quantity.
  *
  * @apiSuccessExample {json} Success-Response:
