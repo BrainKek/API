@@ -1,82 +1,90 @@
 /**
- * @apiDefine ProductNotFoundError
- *
- * @apiError ProductNotFound The id of the Product was not found.
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "ProductNotFound"
- *     }
- */
-// ------------------------------------------------------------------------------------------
-// View all products
-// ------------------------------------------------------------------------------------------
-/**
- *
+ * @api {GET} /products View all products
  * @apiVersion 0.1.1
- * @api {get} /products
  * @apiName GetProducts
  * @apiGroup Products
- * @apiParam {Number} id  Products ID
- * @apiSuccess {String} product Product Name.
- * @apiSuccess {String} quantity Product Quantity.
  *
+ * @apiSuccess {Object[]} products Array of products.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "product": "MacBook",
- *       "quantity": "89"
- *     }
- *      {
- *       "product": "iphone",
- *       "quantity": "582"
+ *       "products": [
+ *         {
+ *           "id": 1,
+ *           "name": "Product 1",
+ *           "price": 10.00
+ *         },
+ *         {
+ *           "id": 2,
+ *           "name": "Product 2",
+ *           "price": 20.00
+ *         }
+ *       ]
  *     }
  */
-// ------------------------------------------------------------------------------------------
-// View the product by its id
-// ------------------------------------------------------------------------------------------
- /**
- * @api {get} /product/{id}
+
+/**
+ * @api {GET} /products/:id View product details
  * @apiName GetProduct
- * @apiGroup Product
- * @apiParam {Number} id  Product ID
- * @apiSuccess {String} product Product Name.
- * @apiSuccess {String} quantity Product Quantity.
+ * @apiGroup Products
  *
+ * @apiParam {Number} id Product's unique ID.
+ *
+ * @apiSuccess {Object} product Product details.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "product": "MacBook",
- *       "quantity": "89"
+ *       "id": 1,
+ *       "name": "Product 1",
+ *       "price": 10.00,
+ *       "description": "Product description",
+ *       "image": "product.jpg"
  *     }
  *
+ * @apiError 404 Product not found.
  */
-// ------------------------------------------------------------------------------------------
-// Add prodсts in card.
-// ------------------------------------------------------------------------------------------
+
 /**
- * @api {post} /cart/add
- * @apiName PutProduct
- * @apiGroup Product
+ * @api {PUT} /products/:id Update product information
+ * @apiName UpdateProduct
+ * @apiGroup Products
  *
- * @apiParam {Number} id  Product ID.
- * @apiParam {String} [product_name] Change product name.
- * @apiParam {String} [quantity]  Change quantity.
+ * @apiParam {Number} id Product's unique ID.
+ * @apiParam {String} [name] Product name.
+ * @apiParam {Number} [price] Product price.
+ * @apiParam {String} [description] Product description.
  *
- * @apiSuccessExample Success-Response:
+ * @apiSuccess {String} message Success message.
+ * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "Product information updated successfully."
+ *     }
  *
- * @apiUse ProductNotFoundError 
+ * @apiError 404 Product not found.
+ * @apiError 403 Only administrators can update product information.
  */
-// ------------------------------------------------------------------------------------------
-// Change product data 
-// ------------------------------------------------------------------------------------------
+
 /**
- * @api {put} /product/{id}
- * @apiBody {String} [product_name]       Optional Product Name.
- * @apiBody {String} quantity          Quantity.
- * @apiBody {String} syze="6.5"      Mandatory with default value "6.5".
- * @apiBody {Number} [date=2024-09-09]     Production date.
+ * @api {POST} /cart Add product to cart
+ * @apiName AddToCart
+ * @apiGroup Cart
  *
+ * @apiParam {Number} productId ID of the product to add to cart.
+ * @apiParam {Number} quantity Quantity of the product to add.
+ *
+ * @apiSuccess {String} message Success message.
+ * @apiSuccess {Object} cart Updated cart details.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "Product added to cart successfully.",
+ *       "cart": {
+ *         "totalItems": 1,
+ *         "totalPrice": 10.00
+ *       }
+ *     }
+ *
+ * @apiError 400 Invalid quantity value.
+ * @apiError 404 Product not found.
  */
