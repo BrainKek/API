@@ -7,20 +7,32 @@
  * @apiSuccess {Object[]} products Array of products.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
- *     {
- *       "products": [
- *         {
- *           "id": 1,
- *           "name": "Product 1",
- *           "price": 10.00
- *         },
- *         {
- *           "id": 2,
- *           "name": "Product 2",
- *           "price": 20.00
- *         }
- *       ]
- *     }
+ * {
+ *   "Products": [
+ *       {
+ *           "Id": 1,
+ *           "Name": "MacBook",
+ *           "Description": "",
+ *           "Discount": 0,
+ *           "Category": 1
+ *       },
+ *       {
+ *           "Id": 2,
+ *           "Name": "Iphone",
+ *           "Description": "",
+ *           "Discount": 0,
+ *           "Category": 1
+ *       },
+ *       {
+ *           "Id": 3,
+ *           "Name": "IPad",
+ *           "Description": "",
+ *           "Discount": 10,
+ *           "Category": 2
+ *       }
+ *   ]
+ * }
+ *
  */
 
 /**
