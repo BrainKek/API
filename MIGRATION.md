@@ -1,8 +1,6 @@
 ## Databases
 
-Database drivers run migrations. [Add a new database](database/driver.go)
-
-* [PostgreSQL](database/postgres)
+This project uses a PostgreSQL database
 
 ### Database URLs
 
